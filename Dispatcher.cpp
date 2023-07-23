@@ -501,8 +501,11 @@ void Dispatcher::printSpeed() {
 			++i;
 		}
 
-		const std::string strVT100ClearLine = "\33[2K\r";
-		std::cerr << strVT100ClearLine << "Total: " << formatSpeed(speedTotal) << " -" << strGPUs << '\r' << std::flush;
+		const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - timeStart).count();
+		if (seconds % 60 == 0) {
+			const std::string strVT100ClearLine = "\33[2K\r";
+			std::cerr << strVT100ClearLine << "Total: " << formatSpeed(speedTotal) << " -" << strGPUs << '\r' << std::flush;
+		}
 		m_countPrint = 0;
 	}
 }
