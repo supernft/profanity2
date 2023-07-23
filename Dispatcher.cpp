@@ -339,7 +339,7 @@ void Dispatcher::initContinue(Device & d) {
 
 	// Print progress
 	const size_t percentDone = m_sizeInitDone * 100 / m_sizeInitTotal;
-	std::cout << "  " << percentDone << "%\r" << std::flush;
+	std::cerr << "  " << percentDone << "%\r" << std::flush;
 
 	if (sizeLeft) {
 		cl_event event;
@@ -503,8 +503,7 @@ void Dispatcher::printSpeed() {
 
 		const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - timeStart).count();
 		if (seconds % 60 == 0) {
-			const std::string strVT100ClearLine = "\33[2K\r";
-			std::cerr << strVT100ClearLine << "Total: " << formatSpeed(speedTotal) << " -" << strGPUs << '\r' << std::flush;
+			std::cout << "Total: " << formatSpeed(speedTotal) << " -" << strGPUs << '\r' << std::flush << ctd::endl;
 		}
 		m_countPrint = 0;
 	}
