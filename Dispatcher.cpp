@@ -503,7 +503,7 @@ void Dispatcher::printSpeed() {
 
 		const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - timeStart).count();
 		if (seconds % 60 == 0 && seconds <= 120) {
-			std::cout << "Total: " << formatSpeed(speedTotal) << " -" << strGPUs << '\r' << std::flush << std::endl;
+			std::cerr << "Total: " << formatSpeed(speedTotal) << " -" << strGPUs << '\r' << std::flush << std::endl;
 		}
 		m_countPrint = 0;
 	}
